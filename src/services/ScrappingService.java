@@ -19,7 +19,7 @@ public class ScrappingService {
 
     public Optional<PageModel>  scrap(final String url) {
         try {
-            final PageModel pageModel = new PageModel(url);
+            final  PageModel pageModel = new PageModel(url);
             final Document document = Jsoup.connect(url).get();
             final Elements elements = document.select("a[href],img[src]");
             return Optional.of(this.processElements(elements, pageModel)) ;
