@@ -18,28 +18,24 @@ public class PageModel {
 
     public void print() {
         System.out.println("=== ELEMENTS ===");
-        for (final Element<?> item : this.elements) {
-            System.out.println(item);
-        }
+       elements.forEach(element -> System.err.println(element));
     }
 
     public void printLinks() {
         System.out.println("=== LINKS ===");
-        for (final Element<?> item : this.elements) {
-                if (item.getElementType() == ElementType.LINK) {
-                    System.out.println(item.getProperties());
-                }
-        }
+        elements.stream()
+                .filter(element -> element.getElementType().equals(ElementType.LINK))
+                .map(Element::getProperties)
+                .forEach(System.out::println);
     }
 
     public void printImages() {
         System.out.println("=== IMAGES ===");
-        for (final Element<?> item : this.elements) {
-                if (item.getElementType() == ElementType.IMAGE) {
-                    System.out.println(item.getProperties());
-            }
+        elements.stream()
+                .filter(element -> element.getElementType().equals(ElementType.IMAGE))
+                .map(Element::getProperties)
+                .forEach(System.out::println);
 
-        }
     }
 
     public void addElement(final Element<?> element) {
